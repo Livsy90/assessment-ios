@@ -15,7 +15,7 @@ protocol MainInteractorProtocol: AnyObject {
     func removeNotice(at index: Int)
 }
 
-class MainInteractor: MainInteractorProtocol {
+final class MainInteractor: MainInteractorProtocol {
     var data: [Notices] = []
     weak var presenter: MainPresenterProtocol!
     
@@ -41,17 +41,7 @@ class MainInteractor: MainInteractorProtocol {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         context.delete(data[index])
         try? context.save()
-        data = []
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Notices")
-        do {
-            let fetchResult = try (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext.fetch(fetchRequest)
-            for i in 0..<fetchResult.count {
-                data.append(fetchResult[i] as! Notices)
-            }
-            presenter.presentData(with: data)
-        } catch {
-            presenter.presentAlert()
-        }
+        fetchData()
     }
     
 }
