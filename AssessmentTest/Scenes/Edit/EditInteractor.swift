@@ -18,7 +18,7 @@ final class EditInteractor: EditInteractorProtocol {
     // MARK: - Public Properties
     
     weak var presenter: EditPresenterProtocol!
-    let net = NetService.sharedInstanse
+    let netService = NetService.sharedInstanse
     var uC = URLComponents(string: "https://www.purgomalum.com/service/plain")
     var notice: Notices?
     
@@ -26,14 +26,14 @@ final class EditInteractor: EditInteractorProtocol {
         self.presenter = presenter
     }
     
-    // MARK: - MainSceneBusinessLogic
+    // MARK: - Business Logic
     
     func saveData(notice: Notices?, text: String, title: String) {
         self.notice = notice
         let qi = URLQueryItem(name: "text", value: text)
         uC?.queryItems = [qi]
         
-        net.getData(with: uC!.url!) { (data, error) in
+        netService.getData(with: uC!.url!) { (data, error) in
             switch error == nil {
             case true:
                 let str = String(data: data!, encoding: .utf8)
@@ -44,6 +44,8 @@ final class EditInteractor: EditInteractorProtocol {
         }
         
     }
+    
+    // MARK: - Private functions
     
     private func editNotice(str: String?, title: String) {
         self.notice?.noticeTitle = title

@@ -14,11 +14,15 @@ protocol EditRouterProtocol: AnyObject {
 
 final class EditRouter: EditRouterProtocol {
     
+    // MARK: - Public Properties
+    
     weak var viewController: EditViewController!
     
     init(viewController: EditViewController) {
         self.viewController = viewController
     }
+    
+    // MARK: - Routing Logic
     
     func dismissSelf() {
         viewController.navigationController?.popViewController(animated: true)

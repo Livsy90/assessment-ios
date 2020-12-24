@@ -16,6 +16,14 @@
 		193C17772527354400FB9DDB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 193C17752527354400FB9DDB /* LaunchScreen.storyboard */; };
 		193C17822527354400FB9DDB /* AssessmentTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C17812527354400FB9DDB /* AssessmentTestTests.swift */; };
 		193C178D25275B4C00FB9DDB /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C178C25275B4C00FB9DDB /* EditViewController.swift */; };
+		C2083A0D2594D454006F24C9 /* NetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B314E02592246400636AE8 /* NetService.swift */; };
+		C2083A102594D459006F24C9 /* KeyboardHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D82DEC25933D2E00A35EAE /* KeyboardHandler.swift */; };
+		C2083A132594DA7B006F24C9 /* EditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A93F825921C6F00EE5B26 /* EditInteractor.swift */; };
+		C2083A162594DA9A006F24C9 /* UIView+adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D769E2594B1300024C660 /* UIView+adds.swift */; };
+		C2083A192594DAA0006F24C9 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A940525921F1800EE5B26 /* ActivityIndicator.swift */; };
+		C2083A1C2594DAA3006F24C9 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D769A25949E230024C660 /* CustomTextView.swift */; };
+		C2083A1F2594DC1D006F24C9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 193C176B2527354200FB9DDB /* MainViewController.swift */; };
+		C2083A232594DED7006F24C9 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2083A222594DED7006F24C9 /* RoundedButton.swift */; };
 		C25D769B25949E230024C660 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D769A25949E230024C660 /* CustomTextView.swift */; };
 		C25D769F2594B1300024C660 /* UIView+adds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25D769E2594B1300024C660 /* UIView+adds.swift */; };
 		C28A93CE2591E38800EE5B26 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28A93CD2591E38800EE5B26 /* MainInteractor.swift */; };
@@ -60,6 +68,7 @@
 		193C17812527354400FB9DDB /* AssessmentTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssessmentTestTests.swift; sourceTree = "<group>"; };
 		193C17832527354400FB9DDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		193C178C25275B4C00FB9DDB /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		C2083A222594DED7006F24C9 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		C25D769A25949E230024C660 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		C25D769E2594B1300024C660 /* UIView+adds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+adds.swift"; sourceTree = "<group>"; };
 		C28A93CD2591E38800EE5B26 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
@@ -115,15 +124,14 @@
 		193C17662527354200FB9DDB /* AssessmentTest */ = {
 			isa = PBXGroup;
 			children = (
+				C2083A282594E364006F24C9 /* StoryBoards */,
+				C2D867B72594D183007967CB /* CustomViews */,
 				C2B314DF2592245900636AE8 /* Helpers */,
-				C28A940425921F0C00EE5B26 /* ActivityIndicator */,
 				C28A93E82591FB3300EE5B26 /* Extensions */,
 				C28A93CC2591E24C00EE5B26 /* Scenes */,
 				193C17672527354200FB9DDB /* AppDelegate.swift */,
 				193C17692527354200FB9DDB /* SceneDelegate.swift */,
-				193C176D2527354200FB9DDB /* Main.storyboard */,
 				193C17732527354400FB9DDB /* Assets.xcassets */,
-				193C17752527354400FB9DDB /* LaunchScreen.storyboard */,
 				193C17782527354400FB9DDB /* Info.plist */,
 				193C17702527354200FB9DDB /* AssessmentTest.xcdatamodeld */,
 			);
@@ -137,6 +145,15 @@
 				193C17832527354400FB9DDB /* Info.plist */,
 			);
 			path = AssessmentTestTests;
+			sourceTree = "<group>";
+		};
+		C2083A282594E364006F24C9 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				193C176D2527354200FB9DDB /* Main.storyboard */,
+				193C17752527354400FB9DDB /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoards;
 			sourceTree = "<group>";
 		};
 		C28A93CC2591E24C00EE5B26 /* Scenes */ = {
@@ -181,22 +198,23 @@
 			path = Edit;
 			sourceTree = "<group>";
 		};
-		C28A940425921F0C00EE5B26 /* ActivityIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				C28A940525921F1800EE5B26 /* ActivityIndicator.swift */,
-			);
-			path = ActivityIndicator;
-			sourceTree = "<group>";
-		};
 		C2B314DF2592245900636AE8 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				C2B314E02592246400636AE8 /* NetService.swift */,
 				C2D82DEC25933D2E00A35EAE /* KeyboardHandler.swift */,
-				C25D769A25949E230024C660 /* CustomTextView.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C2D867B72594D183007967CB /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				C25D769A25949E230024C660 /* CustomTextView.swift */,
+				C28A940525921F1800EE5B26 /* ActivityIndicator.swift */,
+				C2083A222594DED7006F24C9 /* RoundedButton.swift */,
+			);
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,7 +262,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Михаил Юранов";
 				TargetAttributes = {
 					193C17632527354200FB9DDB = {
@@ -311,6 +329,7 @@
 				C28A93EA2591FB4F00EE5B26 /* UIViewController+adds.swift in Sources */,
 				C2D82DED25933D2E00A35EAE /* KeyboardHandler.swift in Sources */,
 				193C17682527354200FB9DDB /* AppDelegate.swift in Sources */,
+				C2083A232594DED7006F24C9 /* RoundedButton.swift in Sources */,
 				C28A93D52591E47500EE5B26 /* MainConfigurator.swift in Sources */,
 				C28A940125921C8B00EE5B26 /* EditRouter.swift in Sources */,
 				C25D769F2594B1300024C660 /* UIView+adds.swift in Sources */,
@@ -326,11 +345,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2083A132594DA7B006F24C9 /* EditInteractor.swift in Sources */,
+				C2083A102594D459006F24C9 /* KeyboardHandler.swift in Sources */,
+				C2083A162594DA9A006F24C9 /* UIView+adds.swift in Sources */,
+				C2083A1F2594DC1D006F24C9 /* MainViewController.swift in Sources */,
 				C28A93E52591E54400EE5B26 /* MainRouter.swift in Sources */,
 				193C17822527354400FB9DDB /* AssessmentTestTests.swift in Sources */,
+				C2083A1C2594DAA3006F24C9 /* CustomTextView.swift in Sources */,
 				C28A93D62591E47500EE5B26 /* MainConfigurator.swift in Sources */,
+				C2083A192594DAA0006F24C9 /* ActivityIndicator.swift in Sources */,
 				C28A93DB2591E47F00EE5B26 /* MainInteractor.swift in Sources */,
 				C28A93E02591E51800EE5B26 /* MainPresenter.swift in Sources */,
+				C2083A0D2594D454006F24C9 /* NetService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +416,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -450,6 +477,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

@@ -15,23 +15,31 @@ protocol MainViewProtocol: AnyObject {
 
 final class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Public Properties
     
     let configurator: MainConfiguratorProtocol = MainConfigurator()
     let selfToEditSegueName = "goToEdit"
     var presenter: MainPresenterProtocol!
-    
     var data: [Notices] = []
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         configurator.configure(with: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.configureData()
+        presenter.fetchData()
     }
+    
+    // MARK: - TableView Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         data.count
@@ -58,6 +66,8 @@ final class MainViewController: UIViewController, UITableViewDataSource, UITable
     }
     
 }
+
+    // MARK: - Display Logic
 
 extension MainViewController: MainViewProtocol {
     

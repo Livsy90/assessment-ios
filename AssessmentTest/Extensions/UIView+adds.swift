@@ -24,3 +24,15 @@ extension UIView {
     }
     
 }
+
+extension UIView {
+  
+  /// Hide keyboard when tap on view
+  func hideKeyboardOnTap() {
+    let tapGesture = UITapGestureRecognizer(target: self, action: #selector(UIView.endEditing))
+    tapGesture.cancelsTouchesInView = false
+    
+    self.addGestureRecognizer(tapGesture)
+  }
+    
+}

@@ -15,27 +15,35 @@ protocol EditViewProtocol: AnyObject {
 }
 
 final class EditViewController: UIViewController {
-    
-    var presenter: EditPresenterProtocol!
-    let configurator: EditConfiguratorProtocol = EditConfigurator()
-    
-    lazy var keyboardHandler = {
-        KeyboardHandler(viewController: self, scrollView: scrollView)
-    }()
         
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var edit1: UITextField!
     @IBOutlet weak var edit2: CustomTextView!
     
+    // MARK: - Public Properties
+    
+    let configurator: EditConfiguratorProtocol = EditConfigurator()
+    var presenter: EditPresenterProtocol!
     var notice: Notices?
+    lazy var keyboardHandler = {
+        KeyboardHandler(viewController: self, scrollView: scrollView)
+    }()
+    
+    // MARK: - Private Properties
+    
     private let activityIndicator = ActivityIndicator()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardHandler.addKeyboardObservers()
         keyboardHandler.textInputCompletion = handleFocusOnText
         configurator.configure(with: self)
+        view.hideKeyboardOnTap()
         edit1.text = notice?.noticeTitle
         edit2.text = notice?.noticeText
     }
@@ -46,6 +54,8 @@ final class EditViewController: UIViewController {
     }    
     
 }
+
+// MARK: - Display Logic
 
 extension EditViewController: EditViewProtocol {
     
@@ -59,6 +69,8 @@ extension EditViewController: EditViewProtocol {
     }
     
 }
+
+// MARK: - Private Methods
 
 private extension EditViewController {
     

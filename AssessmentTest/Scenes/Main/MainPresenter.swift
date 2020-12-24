@@ -10,7 +10,7 @@ import Foundation
 
 protocol MainPresenterProtocol: AnyObject {
     var router: MainRouterProtocol! { get set }
-    func configureData()
+    func fetchData()
     func presentData(with data: [Notices])
     func removeData(at index: Int)
     func presentAlert()
@@ -20,6 +20,8 @@ protocol MainPresenterProtocol: AnyObject {
 
 final class MainPresenter: MainPresenterProtocol {
     
+    // MARK: - Public Properties
+    
     weak var view: MainViewProtocol!
     var interactor: MainInteractorProtocol!
     var router: MainRouterProtocol!
@@ -28,7 +30,9 @@ final class MainPresenter: MainPresenterProtocol {
         self.view = view
     }
     
-    func configureData() {
+    // MARK: - PresentationLogic
+    
+    func fetchData() {
         interactor.fetchData()
     }
     

@@ -19,6 +19,8 @@ protocol EditPresenterProtocol: AnyObject {
 
 final class EditPresenter: EditPresenterProtocol {
     
+    // MARK: - Public Properties
+    
     weak var view: EditViewProtocol!
     var interactor: EditInteractorProtocol!
     var router: EditRouterProtocol!
@@ -26,6 +28,8 @@ final class EditPresenter: EditPresenterProtocol {
     init(view: EditViewProtocol) {
         self.view = view
     }
+    
+    // MARK: - PresentationLogic
     
     func handleData(notice: Notices?, text: String, title: String) {
         interactor.saveData(notice: notice, text: text, title: title)

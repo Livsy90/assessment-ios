@@ -15,11 +15,15 @@ protocol MainRouterProtocol: AnyObject {
 
 final class MainRouter: MainRouterProtocol {
     
+    // MARK: - Public Properties
+    
     weak var viewController: MainViewController!
     
     init(viewController: MainViewController) {
         self.viewController = viewController
     }
+    
+    // MARK: - Routing Logic
     
     func showEditScene(_ sender: Notices) {
         viewController.performSegue(withIdentifier: viewController.selfToEditSegueName, sender: sender)
