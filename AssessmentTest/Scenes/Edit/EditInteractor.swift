@@ -15,6 +15,8 @@ protocol EditInteractorProtocol: AnyObject {
 
 final class EditInteractor: EditInteractorProtocol {
     
+    // MARK: - Public Properties
+    
     weak var presenter: EditPresenterProtocol!
     let net = NetService.sharedInstanse
     var uC = URLComponents(string: "https://www.purgomalum.com/service/plain")
@@ -23,6 +25,8 @@ final class EditInteractor: EditInteractorProtocol {
     required init(presenter: EditPresenterProtocol) {
         self.presenter = presenter
     }
+    
+    // MARK: - MainSceneBusinessLogic
     
     func saveData(notice: Notices?, text: String, title: String) {
         self.notice = notice

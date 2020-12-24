@@ -16,12 +16,17 @@ protocol MainInteractorProtocol: AnyObject {
 }
 
 final class MainInteractor: MainInteractorProtocol {
+    
+    // MARK: - Public Properties
+    
     var data: [Notices] = []
     weak var presenter: MainPresenterProtocol!
     
     required init(presenter: MainPresenterProtocol) {
         self.presenter = presenter
     }
+    
+    // MARK: - MainSceneBusinessLogic
     
     func fetchData() {
         data = []
