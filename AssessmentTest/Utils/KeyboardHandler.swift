@@ -57,7 +57,7 @@ final class KeyboardHandler {
             let userInfo: NSDictionary = notification.userInfo! as NSDictionary
             let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
             let keyboardSize = keyboardInfo.cgRectValue.size
-            let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height, right: 0)
+            let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardSize.height + 50, right: 0)
             scrollView.contentInset = contentInsets
             scrollView.scrollIndicatorInsets = contentInsets
             textInputCompletion?()

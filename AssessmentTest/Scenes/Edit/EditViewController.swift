@@ -11,17 +11,16 @@ import CoreData
 
 protocol EditViewProtocol: AnyObject {
     func displayResult()
-    func displayAlert()
 }
 
 final class EditViewController: UIViewController {
-        
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var buttonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var edit1: UITextField!
-    @IBOutlet weak var edit2: CustomTextView!
+    @IBOutlet weak var edit2: DesignableTextView!
     
     // MARK: - Public Properties
     
@@ -49,8 +48,12 @@ final class EditViewController: UIViewController {
     }
     
     @IBAction func onClick(_ sender: Any) {
-        activityIndicator.showIndicator(on: self)
-        presenter.handleData(notice: notice, text: edit2.text ?? "", title: edit1.text ?? "")
+        switch edit1.text?.isEmpty {
+        case true:
+            presenter.presentEmptyTextAlert()
+        default:
+            finishEditing()
+        }
     }    
     
 }
@@ -62,10 +65,6 @@ extension EditViewController: EditViewProtocol {
     func displayResult() {
         activityIndicator.hideIndicator()
         presenter.presentDismissing()
-    }
-    
-    func displayAlert() {
-        showAlertWithOneButton(title: "Ошибка", message: "Ошибка валидации данных", buttonTitle: "Ok", buttonAction: presenter.presentDismissing)
     }
     
 }
@@ -81,7 +80,12 @@ private extension EditViewController {
             scrollView.scrollRectToVisible(edit2.frame, animated: true)
         }
     }
-
+    
+    func finishEditing() {
+        activityIndicator.showIndicator(on: self)
+        presenter.handleData(notice: notice, text: edit2.text ?? "", title: edit1.text ?? "")
+    }
+    
 }
 
-    
+

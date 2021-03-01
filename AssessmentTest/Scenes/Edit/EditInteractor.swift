@@ -30,16 +30,18 @@ final class EditInteractor: EditInteractorProtocol {
     
     func saveData(notice: Notices?, text: String, title: String) {
         self.notice = notice
-        let qi = URLQueryItem(name: "text", value: text)
+        let qi = URLQueryItem(name: "text", value: title)
         uC?.queryItems = [qi]
+        guard let url = uC!.url else { return }
         
-        netService.getData(with: uC!.url!) { (data, error) in
+        netService.getData(with: url) { (data, error) in
             switch error == nil {
             case true:
-                let str = String(data: data!, encoding: .utf8)
-                self.notice != nil ? self.editNotice(str: str, title: title) : self.saveNewNotice(str: str, text: text)
+                guard let data = data else { return }
+                let title = String(data: data, encoding: .utf8)
+                self.notice != nil ? self.editNotice(title: title, text: text) : self.saveNewNotice(title: title, text: text)
             case false:
-                self.presenter.presentAlert()
+                self.presenter.presentValidationAlert()
             }
         }
         
@@ -47,21 +49,20 @@ final class EditInteractor: EditInteractorProtocol {
     
     // MARK: - Private functions
     
-    private func editNotice(str: String?, title: String) {
-        self.notice?.noticeTitle = title
-        self.notice?.noticeText = str
+    private func editNotice(title: String?, text: String) {
+        notice?.noticeTitle = title
+        notice?.noticeText = text
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        self.presenter.presentDismissing()
+        presenter.presentDismissing()
     }
     
-    private func saveNewNotice(str: String?, text: String) {
+    private func saveNewNotice(title: String?, text: String) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let ent = NSEntityDescription.insertNewObject(forEntityName: "Notices", into: context) as! Notices
-        ent.noticeTitle = text
-        ent.noticeText = str
+        ent.noticeTitle = title
+        ent.noticeText = text
         (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        self.presenter.presentDismissing()
+        presenter.presentDismissing()
     }
     
 }
-

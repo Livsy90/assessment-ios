@@ -10,6 +10,7 @@ import UIKit
 
 protocol EditRouterProtocol: AnyObject {
     func dismissSelf()
+    func routeToAlert(title: String, message: String, action: (() -> Void)?)
 }
 
 final class EditRouter: EditRouterProtocol {
@@ -26,6 +27,10 @@ final class EditRouter: EditRouterProtocol {
     
     func dismissSelf() {
         viewController.navigationController?.popViewController(animated: true)
+    }
+    
+    func routeToAlert(title: String, message: String, action: (() -> Void)?) {
+        viewController.showAlertWithOneButton(title: title, message: message, buttonTitle: "Ok", buttonAction: action)
     }
     
 }

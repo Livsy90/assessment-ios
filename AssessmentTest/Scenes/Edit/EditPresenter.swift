@@ -13,7 +13,8 @@ protocol EditPresenterProtocol: AnyObject {
     func handleData(notice: Notices?, text: String, title: String)
     func presentDismissing()
     func presentResult()
-    func presentAlert()
+    func presentEmptyTextAlert()
+    func presentValidationAlert()
 }
 
 
@@ -43,8 +44,12 @@ final class EditPresenter: EditPresenterProtocol {
         view?.displayResult()
     }
     
-    func presentAlert() {
-        view?.displayAlert()
+    func presentEmptyTextAlert() {
+        router.routeToAlert(title: "Заголовок не может быть пустым", message: "", action: nil)
+    }
+    
+    func presentValidationAlert() {
+        router.routeToAlert(title: "Ошибка", message: "Ошибка валидации данных", action: presentDismissing)
     }
     
 }

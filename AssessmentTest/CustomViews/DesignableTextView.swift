@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class CustomTextView: UITextView {
+class DesignableTextView: UITextView {
     
     @IBInspectable var borderColor: UIColor? {
         didSet {
@@ -17,13 +17,13 @@ class CustomTextView: UITextView {
         }
     }
     
-    @IBInspectable var borderWidth: CGFloat = 0 {
+    @IBInspectable var borderWidth: CGFloat = 0.5 {
         didSet {
             layer.borderWidth = borderWidth
         }
     }
     
-    @IBInspectable var cornerRadius: CGFloat = 0 {
+    @IBInspectable var cornerRadius: CGFloat = 4 {
         didSet {
             layer.cornerRadius = cornerRadius
         }

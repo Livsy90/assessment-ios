@@ -45,11 +45,11 @@ final class MainPresenter: MainPresenterProtocol {
     }
     
     func presentAlert() {
-        view?.displayAlert()
+        router.routeToAlert(title: "Ошибка", message: "", action: nil)
     }
     
     func selectNotice(_ notice: Notices) {
-        router.showEditScene(notice)
+        router.routeToEdit(notice)
     }
     
 }

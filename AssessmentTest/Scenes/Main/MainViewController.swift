@@ -10,7 +10,6 @@ import UIKit
 
 protocol MainViewProtocol: AnyObject {
     func displayData(with data: [Notices])
-    func displayAlert()
 }
 
 final class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -60,6 +59,8 @@ final class MainViewController: UIViewController, UITableViewDataSource, UITable
         presenter.removeData(at: indexPath.row)
     }
     
+    // MARK: - Prepare for segue
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         presenter.router.prepare(for: segue, sender: sender)
@@ -74,10 +75,6 @@ extension MainViewController: MainViewProtocol {
     func displayData(with data: [Notices]) {
         self.data = data
         tableView.reloadData()
-    }
-    
-    func displayAlert() {
-        showAlertWithOneButton(title: "Error", message: nil, buttonTitle: "Ok", buttonAction: nil)
     }
     
 }

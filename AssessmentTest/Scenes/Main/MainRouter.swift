@@ -9,8 +9,9 @@
 import UIKit
 
 protocol MainRouterProtocol: AnyObject {
-    func showEditScene(_ sender: Notices)
+    func routeToEdit(_ sender: Notices)
     func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    func routeToAlert(title: String, message: String, action: (() -> Void)?)
 }
 
 final class MainRouter: MainRouterProtocol {
@@ -25,7 +26,7 @@ final class MainRouter: MainRouterProtocol {
     
     // MARK: - Routing Logic
     
-    func showEditScene(_ sender: Notices) {
+    func routeToEdit(_ sender: Notices) {
         viewController.performSegue(withIdentifier: viewController.selfToEditSegueName, sender: sender)
     }
     
@@ -34,6 +35,10 @@ final class MainRouter: MainRouterProtocol {
             let vc = segue.destination as! EditViewController
             vc.notice = sender as? Notices
         }
+    }
+    
+    func routeToAlert(title: String, message: String, action: (() -> Void)?) {
+        viewController.showAlertWithOneButton(title: title, message: message, buttonTitle: "Ok", buttonAction: action)
     }
     
 }
